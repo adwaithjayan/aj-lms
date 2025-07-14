@@ -9,6 +9,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from "react";
 import { EditCourse } from "./_components/editCourse";
+import { CourseStructure } from "./_components/course-structure";
 
 type Params = Promise<{ courseId: string }>;
 
@@ -21,10 +22,10 @@ export default async function page({ params }: { params: Params }) {
         Edit Course:{" "}
         <span className="text-primary underline">{data.title}</span>
       </h1>
-      <Tabs defaultValue="" className="w-full">
+      <Tabs defaultValue="basic-info" className="w-full">
         <TabsList className="grid grid-cols-2 w-full">
           <TabsTrigger value="basic-info">Basic Info</TabsTrigger>
-          <TabsTrigger value="course-strucutre">Course Structure</TabsTrigger>
+          <TabsTrigger value="course-structure">Course Structure</TabsTrigger>
         </TabsList>
         <TabsContent value="basic-info">
           <Card>
@@ -36,6 +37,19 @@ export default async function page({ params }: { params: Params }) {
             </CardHeader>
             <CardContent>
               <EditCourse data={data} />
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="course-structure">
+          <Card>
+            <CardHeader>
+              <CardTitle>Course Structure</CardTitle>
+              <CardDescription>
+                Here you can update the cource stucture
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CourseStructure data={data} />
             </CardContent>
           </Card>
         </TabsContent>
